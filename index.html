@@ -36,11 +36,12 @@ body {
     max-width: 600px;
     background: rgba(255, 255, 255, 0.9);
     animation: fadeIn 1.2s ease forwards;
+    z-index: 1;
 }
 
 .wish {
     font-size: 32px;
-    color: #ff4d6d; /* chữ nổi bật */
+    color: #ff4d6d;
     text-align: center;
     animation: pop 0.7s ease forwards;
 }
@@ -55,11 +56,11 @@ body {
     100% { transform: scale(1); opacity: 1; }
 }
 
-/* Họa tiết ngẫu nhiên */
+/* Họa tiết SVG tinh tế */
 .decoration {
     position: absolute;
-    font-size: 30px;
-    opacity: 0.3;
+    font-size: 25px;
+    opacity: 0.25;
     pointer-events: none;
     animation: float 6s ease-in-out infinite;
 }
@@ -69,6 +70,24 @@ body {
     50% { transform: translateY(-10px); }
     100% { transform: translateY(0px); }
 }
+
+/* Link Facebook ở đáy */
+#fb-link {
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    background: rgba(0,0,0,0.3);
+    padding: 5px 10px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+#fb-link:hover {
+    background: rgba(0,0,0,0.6);
+}
 </style>
 </head>
 
@@ -76,6 +95,8 @@ body {
 <div class="card">
     <div class="wish" id="wish">Đang tạo lời chúc...</div>
 </div>
+
+<a href="https://www.facebook.com/ddajt2306" target="_blank" id="fb-link">Facebook của mình</a>
 
 <script>
 // Danh sách lời chúc
@@ -94,13 +115,13 @@ const wishes = [
 document.getElementById("wish").innerText =
     wishes[Math.floor(Math.random() * wishes.length)];
 
-// Họa tiết ngẫu nhiên
+// Họa tiết SVG tinh tế
 const icons = ["❤️","⭐","☁️","🌸","☀️","🌙"];
-for (let i=0; i<5; i++){ // chỉ 5 họa tiết
+for (let i=0; i<5; i++){ // chỉ 5 họa tiết mỗi lần load
     const icon = document.createElement("div");
     icon.className = "decoration";
-    icon.style.left = Math.random()*90 + "%";
-    icon.style.top = Math.random()*80 + "%";
+    icon.style.left = Math.random()*85 + "%";
+    icon.style.top = Math.random()*75 + "%";
     icon.style.fontSize = 20 + Math.random()*20 + "px";
     icon.innerText = icons[Math.floor(Math.random()*icons.length)];
     document.body.appendChild(icon);
@@ -108,3 +129,4 @@ for (let i=0; i<5; i++){ // chỉ 5 họa tiết
 </script>
 </body>
 </html>
+
