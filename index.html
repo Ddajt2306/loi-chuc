@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Lời Chúc Ngẫu Nhiên</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        font-family: "Quicksand", sans-serif;
+        overflow: hidden;
+    }
+
+    .card {
+        background: rgba(255, 255, 255, 0.25);
+        padding: 40px 50px;
+        border-radius: 25px;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        text-align: center;
+        max-width: 600px;
+        animation: fadeIn 1.2s ease forwards;
+    }
+
+    .wish {
+        font-size: 28px;
+        font-family: "Pacifico", cursive;
+        color: #fff;
+        animation: pop 0.7s ease forwards;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(25px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pop {
+        0% { transform: scale(0.7); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+</style>
+</head>
+
+<body>
+<div class="card">
+    <div class="wish" id="wish">Đang tạo lời chúc...</div>
+</div>
+
+<script>
+// Danh sách lời chúc
+const wishes = [
+    "Chúc bạn một ngày thật nhiều niềm vui và năng lượng!",
+    "Chúc bạn luôn hạnh phúc và gặp nhiều may mắn!",
+    "Chúc bạn đạt được mọi điều mình mong muốn!",
+    "Chúc bạn luôn nở nụ cười rạng rỡ!",
+    "Chúc bạn bình an – may mắn – thành công!",
+    "Chúc bạn ngày càng tỏa sáng và tự tin hơn!",
+    "Chúc bạn được yêu thương thật nhiều!",
+    "Chúc mọi điều tốt đẹp nhất sẽ đến với bạn!"
+];
+
+// Chọn ngẫu nhiên
+document.getElementById("wish").innerText =
+    wishes[Math.floor(Math.random() * wishes.length)];
+</script>
+
+</body>
+</html>
