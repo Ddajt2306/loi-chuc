@@ -8,44 +8,54 @@
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-    body {
-        margin: 0;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: "Quicksand", sans-serif;
-        overflow: hidden;
-        transition: background 1s ease;
-    }
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Quicksand", sans-serif;
+    overflow: hidden;
+    transition: background 1s ease;
+    position: relative;
+}
 
-    .card {
-        padding: 40px 50px;
-        border-radius: 25px;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-        text-align: center;
-        max-width: 600px;
-        background: rgba(255,255,255,0.85); /* màu card cố định, khác background */
-        animation: fadeIn 1.2s ease forwards;
-        transition: all 1s ease;
-    }
+.card {
+    padding: 40px 50px;
+    border-radius: 25px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    text-align: center;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.9); /* card luôn sáng, nổi bật */
+    animation: fadeIn 1.2s ease forwards;
+}
 
-    .wish {
-        font-size: 28px;
-        color: #333; /* chữ tối trên card sáng */
-        animation: pop 0.7s ease forwards;
-        transition: all 1s ease;
-    }
+.wish {
+    font-size: 28px;
+    color: #333; /* chữ tối trên card sáng */
+    animation: pop 0.7s ease forwards;
+}
 
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(25px); }
-        to   { opacity: 1; transform: translateY(0); }
-    }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(25px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
 
-    @keyframes pop {
-        0% { transform: scale(0.7); opacity: 0; }
-        100% { transform: scale(1); opacity: 1; }
-    }
+@keyframes pop {
+    0% { transform: scale(0.7); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Họa tiết nền */
+.pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* không chặn click */
+    z-index: -1;
+}
 </style>
 </head>
 
@@ -53,6 +63,22 @@
 <div class="card">
     <div class="wish" id="wish">Đang tạo lời chúc...</div>
 </div>
+
+<!-- SVG họa tiết -->
+<svg class="pattern" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <pattern id="hearts" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+            <text x="0" y="30" font-size="30" fill="rgba(255,255,255,0.3)">❤️</text>
+        </pattern>
+        <pattern id="stars" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+            <text x="0" y="30" font-size="30" fill="rgba(255,255,255,0.3)">⭐</text>
+        </pattern>
+        <pattern id="clouds" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+            <text x="0" y="60" font-size="60" fill="rgba(255,255,255,0.2)">☁️</text>
+        </pattern>
+    </defs>
+    <rect id="patternRect" width="100%" height="100%" fill="url(#hearts)"/>
+</svg>
 
 <script>
 // Danh sách lời chúc
@@ -67,11 +93,11 @@ const wishes = [
     "Chúc mọi điều tốt đẹp nhất sẽ đến với bạn!"
 ];
 
-// Chọn ngẫu nhiên lời chúc
+// Random lời chúc
 document.getElementById("wish").innerText =
     wishes[Math.floor(Math.random() * wishes.length)];
 
-// Danh sách gradient background
+// Gradient background random
 const gradients = [
     "linear-gradient(135deg, #ff9a9e, #fad0c4)",
     "linear-gradient(135deg, #a1c4fd, #c2e9fb)",
@@ -80,13 +106,12 @@ const gradients = [
     "linear-gradient(135deg, #84fab0, #8fd3f4)",
     "linear-gradient(135deg, #fddb92, #d1fdff)"
 ];
-
-// Chọn ngẫu nhiên background
 document.body.style.background = gradients[Math.floor(Math.random() * gradients.length)];
-</script>
 
+// Họa tiết ngẫu nhiên
+const patterns = ["hearts","stars","clouds"];
+document.getElementById("patternRect").setAttribute("fill","url(#"+patterns[Math.floor(Math.random()*patterns.length)]+")");
+
+</script>
 </body>
 </html>
-
-
-
