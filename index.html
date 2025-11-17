@@ -16,14 +16,22 @@ body {
     align-items: center;
     font-family: "Pacifico", cursive;
     overflow: hidden;
-    transition: background 1s ease;
     position: relative;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .card {
     padding: 40px 50px;
     border-radius: 25px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
     text-align: center;
     max-width: 600px;
     background: rgba(255, 255, 255, 0.9);
@@ -33,8 +41,8 @@ body {
 .wish {
     font-size: 32px;
     color: #ff4d6d; /* chữ nổi bật */
-    animation: pop 0.7s ease forwards;
     text-align: center;
+    animation: pop 0.7s ease forwards;
 }
 
 @keyframes fadeIn {
@@ -50,15 +58,15 @@ body {
 /* Họa tiết ngẫu nhiên */
 .decoration {
     position: absolute;
-    font-size: 40px;
-    opacity: 0.4;
+    font-size: 30px;
+    opacity: 0.3;
     pointer-events: none;
     animation: float 6s ease-in-out infinite;
 }
 
 @keyframes float {
     0% { transform: translateY(0px); }
-    50% { transform: translateY(-15px); }
+    50% { transform: translateY(-10px); }
     100% { transform: translateY(0px); }
 }
 </style>
@@ -86,25 +94,14 @@ const wishes = [
 document.getElementById("wish").innerText =
     wishes[Math.floor(Math.random() * wishes.length)];
 
-// Gradient background random
-const gradients = [
-    "linear-gradient(135deg, #ff9a9e, #fad0c4)",
-    "linear-gradient(135deg, #a1c4fd, #c2e9fb)",
-    "linear-gradient(135deg, #fbc2eb, #a6c1ee)",
-    "linear-gradient(135deg, #fdcbf1, #e6dee9)",
-    "linear-gradient(135deg, #84fab0, #8fd3f4)",
-    "linear-gradient(135deg, #fddb92, #d1fdff)"
-];
-document.body.style.background = gradients[Math.floor(Math.random() * gradients.length)];
-
 // Họa tiết ngẫu nhiên
 const icons = ["❤️","⭐","☁️","🌸","☀️","🌙"];
-for (let i=0; i<5; i++){ // chỉ tạo 5 họa tiết ngẫu nhiên
+for (let i=0; i<5; i++){ // chỉ 5 họa tiết
     const icon = document.createElement("div");
     icon.className = "decoration";
     icon.style.left = Math.random()*90 + "%";
     icon.style.top = Math.random()*80 + "%";
-    icon.style.fontSize = 30 + Math.random()*20 + "px";
+    icon.style.fontSize = 20 + Math.random()*20 + "px";
     icon.innerText = icons[Math.floor(Math.random()*icons.length)];
     document.body.appendChild(icon);
 }
