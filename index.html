@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <title>Lời Chúc Ngẫu Nhiên</title>
 
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&family=Montserrat:wght@400;700&family=Lobster&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
     body {
@@ -14,13 +14,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
         font-family: "Quicksand", sans-serif;
         overflow: hidden;
+        transition: background 1s ease;
     }
 
     .card {
-        background: rgba(255, 255, 255, 0.25);
         padding: 40px 50px;
         border-radius: 25px;
         backdrop-filter: blur(12px);
@@ -28,13 +27,14 @@
         text-align: center;
         max-width: 600px;
         animation: fadeIn 1.2s ease forwards;
+        transition: all 1s ease;
     }
 
     .wish {
         font-size: 28px;
-        font-family: "Pacifico", cursive;
         color: #fff;
         animation: pop 0.7s ease forwards;
+        transition: all 1s ease;
     }
 
     @keyframes fadeIn {
@@ -67,10 +67,28 @@ const wishes = [
     "Chúc mọi điều tốt đẹp nhất sẽ đến với bạn!"
 ];
 
-// Chọn ngẫu nhiên
+// Chọn ngẫu nhiên lời chúc
 document.getElementById("wish").innerText =
     wishes[Math.floor(Math.random() * wishes.length)];
+
+// Danh sách gradient background
+const gradients = [
+    "linear-gradient(135deg, #ff9a9e, #fad0c4)",
+    "linear-gradient(135deg, #a1c4fd, #c2e9fb)",
+    "linear-gradient(135deg, #fbc2eb, #a6c1ee)",
+    "linear-gradient(135deg, #fdcbf1, #e6dee9)",
+    "linear-gradient(135deg, #84fab0, #8fd3f4)",
+    "linear-gradient(135deg, #fddb92, #d1fdff)"
+];
+
+// Danh sách font family cho card
+const fonts = ["Pacifico", "Quicksand", "Montserrat", "Lobster", "Roboto"];
+
+// Ngẫu nhiên background và font
+document.body.style.background = gradients[Math.floor(Math.random() * gradients.length)];
+document.querySelector(".wish").style.fontFamily = fonts[Math.floor(Math.random() * fonts.length)];
 </script>
 
 </body>
 </html>
+
